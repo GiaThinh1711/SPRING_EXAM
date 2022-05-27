@@ -12,12 +12,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "candidateDetail")
+@Table(name = "candidates")
 public class CandidateDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-    private String name;
-    private String address;
-    private int dateOfBirth;
+    private String Id;
+    private String Name;
+    private String Address;
+    private String Birthday;
 }
