@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidate Form</title>
+</head>
+<body>
+<div class="container">
+    <h1>Candidate Form</h1>
+    <form action="#" name="form">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label >Address</label>
+            <input type="text" class="form-control" name="address" placeholder="Enter address">
+        </div>
+        <div class="form-group">
+            <label>Date of birth: </label>
+            <input type="date" class="form-control" name="dateOfBirth" placeholder="Enter date of birth">
+        </div>
+        <div><input type="button" class="btn btn-outline-primary" name="btn-submit" value="Save"><input class="btn btn-outline-dark" type="reset" value="Reset"></div>
+    </form>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        var apiUrl = 'http://localhost:8080/api/v1/candidates'
+        document.forms['info']['btn-submit'].onclick = () => {
+            var name = document.forms['info']['name'].value
+            var address = document.forms['info']['address'].value
+            var dateOfBirth = document.forms['info']['dateOfBirth'].value
+            var obj = {
+                "name": name,
+                "address": address,
+                "dateOfBirth": dateOfBirth
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 201) {
+                        window.location.href = "/ListCandidate.html"
+                    }
+                }
+            }
+            xhr.open("POST", apiUrl, false)
+            xhr.setRequestHeader('Content-type', "application/json")
+            xhr.send(JSON.stringify(obj))
+        }
+    })
+</script>
+</body>
+</html>
